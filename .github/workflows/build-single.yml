@@ -117,6 +117,19 @@ jobs:
             git-user-signingkey: true
             git-commit-gpgsign: true
 
+        - name: Make desktop packages if we build from sources
+
+          if: ${{ success() && github.event.inputs.repository != 'yes' }}
+
+          env:
+
+            GPG_PASS:        ${{ secrets.GPG_PASSPHRASE1 }}
+
+          run: |
+
+            cd build
+            ../scripts/cacherebuild.sh
+
         - name: Make BSP packages if we build from sources
 
           if: ${{ success() && github.event.inputs.repository != 'yes' }}

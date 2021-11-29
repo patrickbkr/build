@@ -117,7 +117,7 @@ jobs:
         - name: Build rootfs cache
 
           run: |
-            ROOTFSARCH="${{ github.event.inputs.rootfsarch }}"
+            ROOTFSARCH="${{ inputs.rootfsarch }}"
             echo "BLTPATH=\"$(pwd)/build/\"" | tee scripts/cacherebuild.conf scripts/betarepository.conf >/dev/null
             mkdir -p build-rootfs
             rm -f build-rootfs/*

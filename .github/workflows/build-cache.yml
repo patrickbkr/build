@@ -94,7 +94,7 @@ jobs:
             fi
             sudo rm -f cache/rootfs/*.complete
             sudo rm -f userpatches/targets.conf
-            ../scripts/cacherebuild.sh "no" "../build-rootfs/${ROOTFSARCH}.txt" 
+            ../scripts/cacherebuild.sh "no" "../build-rootfs/${ROOTFSARCH}.txt" "${ROOTFSARCH}"
             PARTS=$(cat ../build-rootfs/${ROOTFSARCH}.txt | wc -l)
             split -d --numeric=1 --number=r/${PARTS} --additional-suffix=.conf --suffix-length=3 ../build-rootfs/${ROOTFSARCH}.txt ../build-rootfs/split-${ROOTFSARCH}-
         - name: Prepare matrix

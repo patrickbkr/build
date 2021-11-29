@@ -7,6 +7,11 @@ on:
       rootfsarch:
         required: true
         type: string
+    secrets:
+      GPG_KEY2:
+        required: true
+      GPG_PASSPHRASE2:
+        required: true
 jobs:
 
   Merge:

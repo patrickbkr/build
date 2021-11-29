@@ -8,12 +8,16 @@ on:
         required: true
         type: string
     secrets:
+      GPG_KEY1:
+        required: false
+      GPG_PASSPHRASE1:
+        required: false
       GPG_KEY2:
-        required: true
+        required: false
       GPG_PASSPHRASE2:
-        required: true
+        required: false
       SCRIPTS_ACCESS_TOKEN:
-        required: true
+        required: false
 jobs:
 
   Merge:

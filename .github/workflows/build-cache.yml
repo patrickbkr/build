@@ -12,6 +12,8 @@ on:
         required: true
       GPG_PASSPHRASE2:
         required: true
+      SCRIPTS_ACCESS_TOKEN:
+        required: true
 jobs:
 
   Merge:

@@ -72,7 +72,7 @@ jobs:
             cache-name: build-rootfs
           with:
             path: build-rootfs
-            key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_id }}
+            key: ${{ runner.os }}-build-${{ env.cache-name }}
 
         - name: Build rootfs cache
 
@@ -122,9 +122,9 @@ jobs:
           cache-name: build-rootfs
         with:
           path: build-rootfs
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_id }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_id }}
+            ${{ runner.os }}-build-${{ env.cache-name }}
       - name: Fix permissions
         run: |
           # make sure no temporally dirs are mounted from previous runs

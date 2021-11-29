@@ -2,7 +2,11 @@ name: Build Rootfs Cache
 
 on:
   workflow_dispatch:
-
+  workflow_call:
+    inputs:
+      rootfsarch:
+        required: true
+        type: string
 jobs:
 
   Merge:

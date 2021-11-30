@@ -66,13 +66,13 @@ jobs:
             repository: armbian/scripts
             token: ${{ secrets.SCRIPTS_ACCESS_TOKEN }}
             path: scripts
-            ref: master
+            ref: ${{ inputs.branch }}
             clean: true
 
         - name: Build rootfs cache
 
           run: |
-            echo ${{ inputs.branch }}
+            
             ROOTFSARCH="${{ inputs.rootfsarch }}"
             echo "BLTPATH=\"$(pwd)/build/\"" | tee scripts/cacherebuild.conf scripts/betarepository.conf >/dev/null
             mkdir -p build-rootfs

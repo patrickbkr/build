@@ -66,14 +66,6 @@ jobs:
             ref: master
             clean: true
 
-        - name: Cache build configurations
-          uses: actions/cache@v2
-          env:
-            cache-name: build-rootfs
-          with:
-            path: build-rootfs
-            key: ${{ runner.os }}-build-${{ env.cache-name }}
-
         - name: Build rootfs cache
 
           run: |
@@ -97,6 +89,11 @@ jobs:
             ../scripts/cacherebuild.sh "no" "../build-rootfs/${ROOTFSARCH}.txt" "${ROOTFSARCH}"
             PARTS=$(cat ../build-rootfs/${ROOTFSARCH}.txt | wc -l)
             split -d --numeric=1 --number=r/${PARTS} --additional-suffix=.conf --suffix-length=3 ../build-rootfs/${ROOTFSARCH}.txt ../build-rootfs/split-${ROOTFSARCH}-
+        - name: Upload build parts
+          uses: actions/upload-artifact@v2
+          with:
+            name: build-rootfs
+            path: build-rootfs/*
         - name: Prepare matrix
           id: list_dirs
           run: |
@@ -116,15 +113,10 @@ jobs:
 
     steps:
  
-      - name: Cache Gradle packages
-        uses: actions/cache@v2
-        env:
-          cache-name: build-rootfs
+      - name: Download artefacts
+        uses: actions/download-artifact@v2
         with:
-          path: build-rootfs
-          key: ${{ runner.os }}-build-${{ env.cache-name }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}
+          name: build-rootfs
       - name: Fix permissions
         run: |
           # make sure no temporally dirs are mounted from previous runs
@@ -235,14 +227,6 @@ jobs:
             path: scripts
             ref: master
             clean: true
-
-        - name: Cache build configurations
-          uses: actions/cache@v2
-          env:
-            cache-name: build-rootfs
-          with:
-            path: build-rootfs
-            key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ github.run_id }}
 
         - name: Build rootfs cache
 

@@ -149,7 +149,7 @@ jobs:
           fetch-depth: 0
           repository: armbian/build
           path: build
-          ref: nightly
+          ref: ${{ inputs.branch }}
           clean: false
 
       - name: Checkout Armbian support scripts

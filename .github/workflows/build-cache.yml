@@ -22,7 +22,7 @@ jobs:
 
   Prepare:
 
-    name: Targets
+    name: find targets
     runs-on: [self-hosted, Linux, cache]
     if: ${{ github.repository_owner == 'armbian' }}
     outputs:

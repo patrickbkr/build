@@ -7,6 +7,9 @@ on:
       rootfsarch:
         required: true
         type: string
+      branch:
+        required: true
+        type: string
     secrets:
       GPG_KEY1:
         required: false
@@ -69,6 +72,7 @@ jobs:
         - name: Build rootfs cache
 
           run: |
+            echo ${{ inputs.branch }}
             ROOTFSARCH="${{ inputs.rootfsarch }}"
             echo "BLTPATH=\"$(pwd)/build/\"" | tee scripts/cacherebuild.conf scripts/betarepository.conf >/dev/null
             mkdir -p build-rootfs

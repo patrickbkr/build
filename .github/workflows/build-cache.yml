@@ -55,7 +55,7 @@ jobs:
             fetch-depth: 0
             repository: armbian/build
             path: build
-            ref: nightly
+            ref: ${{ inputs.branch }}
             clean: false
 
         - name: Checkout Armbian support scripts
@@ -66,7 +66,7 @@ jobs:
             repository: armbian/scripts
             token: ${{ secrets.SCRIPTS_ACCESS_TOKEN }}
             path: scripts
-            ref: ${{ inputs.branch }}
+            ref: master
             clean: true
 
         - name: Build rootfs cache

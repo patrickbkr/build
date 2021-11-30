@@ -98,6 +98,7 @@ jobs:
           id: list_dirs
           run: |
             PARTS=$(cat ${ROOTFSARCH}.txt | wc -l)
+            echo $PARTS
             echo ::set-output name=matrix::$(for x in $(seq -w 1 $PARTS); do echo $x; done|jq -cnR '[inputs | select(length>0)]' | jq)
 
   Cache:

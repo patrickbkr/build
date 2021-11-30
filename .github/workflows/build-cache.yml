@@ -185,4 +185,4 @@ jobs:
           sudo cp ../scripts/configs/* userpatches/
           # prepare host
           [[ ! -f .ignore_changes ]] && sudo touch .ignore_changes || true
-          bash split-${ROOTFSARCH}-${CHUNK}.conf
+          bash ../split-${ROOTFSARCH}-${CHUNK}.conf
